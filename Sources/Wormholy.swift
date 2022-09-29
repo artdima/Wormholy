@@ -37,14 +37,19 @@ public class Wormholy: NSObject
         get { Storage.defaultFilter }
         set { Storage.defaultFilter = newValue }
     }
+    
+    /// Is enabled Wormholy
+    @objc public static var isEnable: Bool = true
 
     @objc public static func swiftyLoad() {
+        guard isEnable else { return }
         NotificationCenter.default.addObserver(forName: fireWormholy, object: nil, queue: nil) { (notification) in
             Wormholy.presentWormholyFlow()
         }
     }
     
     @objc public static func swiftyInitialize() {
+        guard isEnable else { return }
         if self == Wormholy.self{
             Wormholy.enable(true)
         }
@@ -136,6 +141,7 @@ extension Wormholy {
     }
     
     private static let initializeAction: Void = {
+        guard isEnable else { return }
         swiftyLoad()
         swiftyInitialize()
     }()
