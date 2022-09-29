@@ -50,7 +50,7 @@ public class Wormholy: NSObject
         }
     }
     
-    static func enable(_ enable: Bool){
+    @objc public static func enable(_ enable: Bool){
         if enable{
             URLProtocol.registerClass(CustomHTTPProtocol.self)
         }
