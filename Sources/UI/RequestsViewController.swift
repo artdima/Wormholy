@@ -12,28 +12,40 @@ class RequestsViewController: WHBaseViewController {
     
     @IBOutlet weak var collectionView: WHCollectionView!
     var filteredRequests: [RequestModel] = []
+    var filteredAnalitics: [AnaliticsModel] = []
+    var type: LogType = .network {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     var searchController: UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addSearchController()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "More", style: .plain, target: self, action: #selector(openActionSheet(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        
+        setupNavigation()
+    
         collectionView?.register(UINib(nibName: "RequestCell", bundle:WHBundle.getBundle()), forCellWithReuseIdentifier: "RequestCell")
+        collectionView?.register(UINib(nibName: "AnaliticsCell", bundle:WHBundle.getBundle()), forCellWithReuseIdentifier: "AnaliticsCell")
         
         filteredRequests = Storage.shared.requests
+        filteredAnalitics = Storage.shared.analitics
         NotificationCenter.default.addObserver(forName: newRequestNotification, object: nil, queue: nil) { [weak self] (notification) in
             DispatchQueue.main.sync { [weak self] in
                 self?.filteredRequests = self?.filterRequests(text: self?.searchController?.searchBar.text) ?? []
                 self?.collectionView.reloadData()
             }
         }
+        
+        NotificationCenter.default.addObserver(forName: newAnaliticsNotification, object: nil, queue: nil) { [weak self] (notification) in
+            DispatchQueue.main.async { [weak self] in
+                self?.filteredAnalitics = Storage.shared.analitics
+                self?.collectionView.reloadData()
+            }
+        }
 
-        /// Handling keyboard notifications
-        ///
+        // Handling keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
@@ -58,6 +70,17 @@ class RequestsViewController: WHBaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    private func setupNavigation() {
+        let shareButtonImage = UIImage(systemName: "square.and.arrow.up")
+        let moreButtonImage = UIImage(systemName: "ellipsis.circle")
+        let homeButtonImage = UIImage(systemName: "house")
+        let moreButton = UIBarButtonItem(image: shareButtonImage, style: .plain, target: self, action: #selector(openActionSheet(_:)))
+        let typeButton = UIBarButtonItem(image: moreButtonImage,  style: .plain, target: self, action: #selector(didTapTypeButton(_:)))
+        let doneButton = UIBarButtonItem(image: homeButtonImage, style: .plain, target: self, action: #selector(done))
+        navigationItem.rightBarButtonItems = [moreButton, typeButton]
+        navigationItem.leftBarButtonItems = [doneButton]
+    }
+    
     //  MARK: - Search
     func addSearchController(){
         searchController = UISearchController(searchResultsController: nil)
@@ -71,6 +94,8 @@ class RequestsViewController: WHBaseViewController {
         if let filter = Storage.defaultFilter {
             searchController?.searchBar.text = filter
         }
+        //searchController?.searchBar.barTintColor =
+        searchController?.searchBar.searchTextField.backgroundColor = .white
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {
@@ -90,22 +115,36 @@ class RequestsViewController: WHBaseViewController {
     }
     
     // MARK: - Actions
+    @objc func didTapTypeButton(_ sender: UIBarButtonItem){
+        let ac = UIAlertController()
+        ac.addAction(UIAlertAction(title: "Network logs", style: .default) { [weak self] (action) in
+            self?.type = .network
+        })
+        ac.addAction(UIAlertAction(title: "Analytics logs", style: .default) { [weak self] (action) in
+            self?.type = .analitics
+        })
+        ac.addAction(UIAlertAction(title: "Close", style: .cancel) { (action) in
+        })
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            ac.popoverPresentationController?.barButtonItem = sender
+        }
+        present(ac, animated: true, completion: nil)
+    }
+    
     @objc func openActionSheet(_ sender: UIBarButtonItem){
-        let ac = UIAlertController(title: "Wormholy", message: "Choose an option", preferredStyle: .actionSheet)
-        
+        let ac = UIAlertController()
         ac.addAction(UIAlertAction(title: "Clear", style: .default) { [weak self] (action) in
             self?.clearRequests()
         })
         ac.addAction(UIAlertAction(title: "Share", style: .default) { [weak self] (action) in
             self?.shareContent(sender)
         })
-        
         ac.addAction(UIAlertAction(title: "Share as cURL", style: .default) { [weak self] (action) in
             self?.shareContent(sender, requestExportOption: .curl)
         })
         ac.addAction(UIAlertAction(title: "Share as Postman Collection", style: .default) { [weak self] (action) in
-                   self?.shareContent(sender, requestExportOption: .postman)
-               })
+            self?.shareContent(sender, requestExportOption: .postman)
+        })
         ac.addAction(UIAlertAction(title: "Close", style: .cancel) { (action) in
         })
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -115,12 +154,14 @@ class RequestsViewController: WHBaseViewController {
     }
     
     func clearRequests() {
-        Storage.shared.clearRequests()
+        Storage.shared.clearData()
         filteredRequests = Storage.shared.requests
+        filteredAnalitics = Storage.shared.analitics
         collectionView.reloadData()
     }
     
     func shareContent(_ sender: UIBarButtonItem, requestExportOption: RequestResponseExportOption = .flat){
+        //TODO: - добавить шаринг аналитики
         ShareUtils.shareRequests(presentingViewController: self, sender: sender, requests: filteredRequests, requestExportOption: requestExportOption)
     }
     
@@ -139,6 +180,7 @@ class RequestsViewController: WHBaseViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: newRequestNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: newAnaliticsNotification, object: nil)
     }
 
     // MARK: - Keyboard management
@@ -162,20 +204,37 @@ class RequestsViewController: WHBaseViewController {
 
 extension RequestsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredRequests.count
+        switch type {
+        case .network:
+            return filteredRequests.count
+        case .analitics:
+            return filteredAnalitics.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RequestCell", for: indexPath) as! RequestCell
-        
-        cell.populate(request: filteredRequests[indexPath.item])
-        return cell
+        switch type {
+        case .network:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RequestCell", for: indexPath) as! RequestCell
+            cell.populate(request: filteredRequests[indexPath.item])
+            return cell
+        case .analitics:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AnaliticsCell", for: indexPath) as! AnaliticsCell
+            cell.populate(event: filteredAnalitics[indexPath.item])
+            return cell
+        }
     }
 }
 
 extension RequestsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        openRequestDetailVC(request: filteredRequests[indexPath.item])
+        switch type {
+        case .network:
+            openRequestDetailVC(request: filteredRequests[indexPath.item])
+        case .analitics:
+            //TODO: -
+            ()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -188,6 +247,7 @@ extension RequestsViewController: UICollectionViewDelegate, UICollectionViewDele
 // MARK: - UISearchResultsUpdating Delegate
 extension RequestsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        //TODO: - добавить аналитику
         filteredRequests = filterRequests(text: searchController.searchBar.text)
         collectionView.reloadData()
     }

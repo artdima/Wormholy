@@ -1,0 +1,23 @@
+//
+//  AnaliticsModel.swift
+//  Wormholy-iOS
+//
+//  Created by Medyannik Dmitri on 01.10.2022.
+//  Copyright © 2022 Wormholy. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+open class AnaliticsModel {
+    public let date: Date
+    public var name: String?
+    public var parameters: [String: Any]?
+    
+    init(name: String?, parameters: [String: Any]?) {
+        self.date = Date()
+        self.name = name
+        self.parameters = parameters
+    }
+}
+

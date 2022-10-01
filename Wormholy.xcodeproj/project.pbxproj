@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		327C506C28E818BD00BEBBDD /* AnaliticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */; };
+		327C506F28E8253E00BEBBDD /* AnaliticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C506D28E8253E00BEBBDD /* AnaliticsCell.swift */; };
+		327C507028E8253E00BEBBDD /* AnaliticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327C506E28E8253E00BEBBDD /* AnaliticsCell.xib */; };
+		32C4E2B528E831F400702271 /* Extension_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4E2B428E831F400702271 /* Extension_UIColor.swift */; };
 		4508718C207E59FF00EE2D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508718B207E59FF00EE2D31 /* AppDelegate.swift */; };
 		4508718E207E59FF00EE2D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508718D207E59FF00EE2D31 /* ViewController.swift */; };
 		45087191207E59FF00EE2D31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4508718F207E59FF00EE2D31 /* Main.storyboard */; };
@@ -77,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsModel.swift; sourceTree = "<group>"; };
+		327C506D28E8253E00BEBBDD /* AnaliticsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsCell.swift; sourceTree = "<group>"; };
+		327C506E28E8253E00BEBBDD /* AnaliticsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnaliticsCell.xib; sourceTree = "<group>"; };
+		32C4E2B428E831F400702271 /* Extension_UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_UIColor.swift; sourceTree = "<group>"; };
 		45087189207E59FE00EE2D31 /* WormholyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WormholyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4508718B207E59FF00EE2D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4508718D207E59FF00EE2D31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 				452CC13521773DE500CB5E21 /* Assets.xcassets */,
 				451C9E5D2080EFF5002A34BC /* Config.swift */,
 				45820CF5208170F400CA74D6 /* Colors.swift */,
+				32C4E2B428E831F400702271 /* Extension_UIColor.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -251,6 +260,8 @@
 				45C4F4EF20860DC0007D0D17 /* TextTableViewCell.xib */,
 				45868F1920F4E9790024C77B /* ActionableTableViewCell.swift */,
 				45868F1A20F4E9790024C77B /* ActionableTableViewCell.xib */,
+				327C506D28E8253E00BEBBDD /* AnaliticsCell.swift */,
+				327C506E28E8253E00BEBBDD /* AnaliticsCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -273,6 +284,7 @@
 				64DD526E23F9B7EB00AB92C4 /* Postman */,
 				455818C8207D621200D2F954 /* RequestModel.swift */,
 				45FF5C5120877A950084BD50 /* Section.swift */,
+				327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -514,6 +526,7 @@
 			files = (
 				45FF5C4E20875F770084BD50 /* RequestTitleSectionView.xib in Resources */,
 				452CC13621773DE500CB5E21 /* Assets.xcassets in Resources */,
+				327C507028E8253E00BEBBDD /* AnaliticsCell.xib in Resources */,
 				451C9E552080E5E4002A34BC /* Flow.storyboard in Resources */,
 				451C9E6320810472002A34BC /* RequestCell.xib in Resources */,
 				45C4F4F120860DC0007D0D17 /* TextTableViewCell.xib in Resources */,
@@ -557,6 +570,7 @@
 				8933C7851EB5B820000D00A4 /* Wormholy.swift in Sources */,
 				455818C4207D61A100D2F954 /* Storage.swift in Sources */,
 				45FF5C4C20875F710084BD50 /* RequestTitleSectionView.swift in Sources */,
+				32C4E2B528E831F400702271 /* Extension_UIColor.swift in Sources */,
 				45DB6DAF2083E738009494AE /* RequestDetailViewController.swift in Sources */,
 				451C9E5A2080E8D2002A34BC /* WHBaseViewController.swift in Sources */,
 				45FF5C4A20875EFA0084BD50 /* WHView.swift in Sources */,
@@ -573,8 +587,10 @@
 				453A167720ED1B02001CEB9D /* WHString.swift in Sources */,
 				452CC1322175FDB200CB5E21 /* CustomActivity.swift in Sources */,
 				45868F1420F4E2B10024C77B /* BodyDetailViewController.swift in Sources */,
+				327C506C28E818BD00BEBBDD /* AnaliticsModel.swift in Sources */,
 				45FF5C5220877A950084BD50 /* Section.swift in Sources */,
 				451C9E6920810B98002A34BC /* WHCollectionView.swift in Sources */,
+				327C506F28E8253E00BEBBDD /* AnaliticsCell.swift in Sources */,
 				45C4F4F320860FBC007D0D17 /* WHTextView.swift in Sources */,
 				451C9E6B20810BBD002A34BC /* RequestsViewController.swift in Sources */,
 				455818D5207D64A900D2F954 /* WormholyMethodSwizzling.m in Sources */,
@@ -641,7 +657,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = WormholyDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeido.Wormholy.WormholyDemo;
@@ -669,7 +685,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = WormholyDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeido.Wormholy.WormholyDemo;
@@ -729,7 +745,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -783,7 +799,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -812,7 +828,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Configs/Wormholy.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = 1.6.5;
@@ -852,7 +868,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Configs/Wormholy.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = 1.6.5;

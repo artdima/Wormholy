@@ -25,3 +25,8 @@ enum SectionType {
     case responseHeader
     case responseBody
 }
+
+enum LogType {
+    case network
+    case analitics
+}

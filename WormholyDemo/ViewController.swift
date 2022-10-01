@@ -21,6 +21,8 @@ class ViewController: UIViewController {
                 }) { (error) in
                     print("ERROR: api Get post")
                 }
+                
+                Wormholy.saveEvents(name: "Name", parameters: ["Event": "Value \(timer)"])
             }
             timer.fire()
         }
