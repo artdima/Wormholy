@@ -71,14 +71,18 @@ class RequestsViewController: WHBaseViewController {
     }
     
     private func setupNavigation() {
-        let shareButtonImage = UIImage(systemName: "square.and.arrow.up")
-        let moreButtonImage = UIImage(systemName: "ellipsis.circle")
-        let homeButtonImage = UIImage(systemName: "house")
-        let moreButton = UIBarButtonItem(image: shareButtonImage, style: .plain, target: self, action: #selector(openActionSheet(_:)))
-        let typeButton = UIBarButtonItem(image: moreButtonImage,  style: .plain, target: self, action: #selector(didTapTypeButton(_:)))
-        let doneButton = UIBarButtonItem(image: homeButtonImage, style: .plain, target: self, action: #selector(done))
+        //let shareButtonImage = UIImage(named: "square.and.arrow.up")
+        //let moreButtonImage = UIImage(named: "ellipsis.circle")
+        //let homeButtonImage = UIImage(named: "arrow_left")
+        
+        //let moreButton = UIBarButtonItem(image: shareButtonImage, style: .plain, target: self, action: #selector(openActionSheet(_:)))
+        //let typeButton = UIBarButtonItem(image: moreButtonImage,  style: .plain, target: self, action: #selector(didTapTypeButton(_:)))
+        //let doneButton = UIBarButtonItem(image: homeButtonImage, style: .done, target: self, action: #selector(done))
+        let moreButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(openActionSheet(_:)))
+        let typeButton = UIBarButtonItem(title: "Type",  style: .plain, target: self, action: #selector(didTapTypeButton(_:)))
+        let doneButton = UIBarButtonItem(title: "Back", style: .done, target: self, action: #selector(done))
         navigationItem.rightBarButtonItems = [moreButton, typeButton]
-        navigationItem.leftBarButtonItems = [doneButton]
+        navigationItem.leftBarButtonItem = doneButton
     }
     
     //  MARK: - Search
@@ -94,8 +98,6 @@ class RequestsViewController: WHBaseViewController {
         if let filter = Storage.defaultFilter {
             searchController?.searchBar.text = filter
         }
-        //searchController?.searchBar.barTintColor =
-        searchController?.searchBar.searchTextField.backgroundColor = .white
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
         } else {
