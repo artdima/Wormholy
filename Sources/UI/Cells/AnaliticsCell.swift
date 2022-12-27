@@ -13,7 +13,7 @@ class AnaliticsCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: WHLabel!
     @IBOutlet weak var paramLabel: WHLabel!
 
-    func populate(event: AnaliticsModel?){
+    func populate(event: AnalyticsModel?){
         guard let event = event else { return }
         
         nameLabel.text = event.name

@@ -15,7 +15,7 @@ open class Storage: NSObject {
     public static var defaultFilter: String? = nil
     
     open var requests: [RequestModel] = []
-    open var analitics: [AnaliticsModel] = []
+    open var analitics: [AnalyticsModel] = []
     
     func saveRequest(request: RequestModel?){
         guard request != nil else {
@@ -36,7 +36,7 @@ open class Storage: NSObject {
         NotificationCenter.default.post(name: newRequestNotification, object: nil)
     }
     
-    func saveAnalitics(event: AnaliticsModel?) {
+    func saveAnalitics(event: AnalyticsModel?) {
         guard let event = event else { return }
         analitics.insert(event, at: 0)
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-open class AnaliticsModel {
+open class AnalyticsModel {
     public let date: Date
     public var name: String?
     public var parameters: [String: Any]?

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		327C506C28E818BD00BEBBDD /* AnaliticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */; };
+		327C506C28E818BD00BEBBDD /* AnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C506B28E818BD00BEBBDD /* AnalyticsModel.swift */; };
 		327C506F28E8253E00BEBBDD /* AnaliticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C506D28E8253E00BEBBDD /* AnaliticsCell.swift */; };
 		327C507028E8253E00BEBBDD /* AnaliticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327C506E28E8253E00BEBBDD /* AnaliticsCell.xib */; };
+		32A2F3DA295B4D2200A2B74B /* AnalyticsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A2F3D9295B4D2200A2B74B /* AnalyticsDetailViewController.swift */; };
 		32C4E2B528E831F400702271 /* Extension_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C4E2B428E831F400702271 /* Extension_UIColor.swift */; };
 		4508718C207E59FF00EE2D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508718B207E59FF00EE2D31 /* AppDelegate.swift */; };
 		4508718E207E59FF00EE2D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4508718D207E59FF00EE2D31 /* ViewController.swift */; };
@@ -81,9 +82,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsModel.swift; sourceTree = "<group>"; };
+		327C506B28E818BD00BEBBDD /* AnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsModel.swift; sourceTree = "<group>"; };
 		327C506D28E8253E00BEBBDD /* AnaliticsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnaliticsCell.swift; sourceTree = "<group>"; };
 		327C506E28E8253E00BEBBDD /* AnaliticsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnaliticsCell.xib; sourceTree = "<group>"; };
+		32A2F3D9295B4D2200A2B74B /* AnalyticsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDetailViewController.swift; sourceTree = "<group>"; };
 		32C4E2B428E831F400702271 /* Extension_UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_UIColor.swift; sourceTree = "<group>"; };
 		45087189207E59FE00EE2D31 /* WormholyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WormholyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4508718B207E59FF00EE2D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				451C9E542080E5E4002A34BC /* Flow.storyboard */,
 				451C9E6A20810BBD002A34BC /* RequestsViewController.swift */,
 				45DB6DAE2083E738009494AE /* RequestDetailViewController.swift */,
+				32A2F3D9295B4D2200A2B74B /* AnalyticsDetailViewController.swift */,
 				45868F1320F4E2B10024C77B /* BodyDetailViewController.swift */,
 				45FF5C4820875ED90084BD50 /* Sections */,
 				451C9E612081045E002A34BC /* Cells */,
@@ -284,7 +287,7 @@
 				64DD526E23F9B7EB00AB92C4 /* Postman */,
 				455818C8207D621200D2F954 /* RequestModel.swift */,
 				45FF5C5120877A950084BD50 /* Section.swift */,
-				327C506B28E818BD00BEBBDD /* AnaliticsModel.swift */,
+				327C506B28E818BD00BEBBDD /* AnalyticsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				45C4F4EB20860D14007D0D17 /* WHTableView.swift in Sources */,
 				45CDAFA52433616800F83C22 /* WormholyConstructor.m in Sources */,
 				451C9E602080F653002A34BC /* WHBundle.swift in Sources */,
+				32A2F3DA295B4D2200A2B74B /* AnalyticsDetailViewController.swift in Sources */,
 				64DD525C23F86B3D00AB92C4 /* ShareUtils.swift in Sources */,
 				452CC13421773BF600CB5E21 /* FileHandler.swift in Sources */,
 				451C9E5E2080EFF5002A34BC /* Config.swift in Sources */,
@@ -587,7 +591,7 @@
 				453A167720ED1B02001CEB9D /* WHString.swift in Sources */,
 				452CC1322175FDB200CB5E21 /* CustomActivity.swift in Sources */,
 				45868F1420F4E2B10024C77B /* BodyDetailViewController.swift in Sources */,
-				327C506C28E818BD00BEBBDD /* AnaliticsModel.swift in Sources */,
+				327C506C28E818BD00BEBBDD /* AnalyticsModel.swift in Sources */,
 				45FF5C5220877A950084BD50 /* Section.swift in Sources */,
 				451C9E6920810B98002A34BC /* WHCollectionView.swift in Sources */,
 				327C506F28E8253E00BEBBDD /* AnaliticsCell.swift in Sources */,

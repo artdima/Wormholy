@@ -57,7 +57,7 @@ public class Wormholy: NSObject
     
     /// Save analitics events
     @objc public static func saveEvents(name: String?, parameters: [String: Any]?) {
-        let event = AnaliticsModel(name: name, parameters: parameters)
+        let event = AnalyticsModel(name: name, parameters: parameters)
         Storage.shared.saveAnalitics(event: event)
     }
     

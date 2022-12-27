@@ -12,7 +12,7 @@ class RequestsViewController: WHBaseViewController {
     
     @IBOutlet weak var collectionView: WHCollectionView!
     var filteredRequests: [RequestModel] = []
-    var filteredAnalitics: [AnaliticsModel] = []
+    var filteredAnalitics: [AnalyticsModel] = []
     var type: LogType = .network {
         didSet {
             self.collectionView.reloadData()
@@ -180,6 +180,14 @@ class RequestsViewController: WHBaseViewController {
         }
     }
     
+    func openAnaliticsDetailVC(with analytics: AnalyticsModel){
+        let storyboard = UIStoryboard(name: "Flow", bundle: WHBundle.getBundle())
+        if let requestDetailVC = storyboard.instantiateViewController(withIdentifier: "AnaliticsDetailViewController") as? AnalyticsDetailViewController{
+            requestDetailVC.analytics = analytics
+            self.show(requestDetailVC, sender: self)
+        }
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: newRequestNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: newAnaliticsNotification, object: nil)
@@ -234,8 +242,7 @@ extension RequestsViewController: UICollectionViewDelegate, UICollectionViewDele
         case .network:
             openRequestDetailVC(request: filteredRequests[indexPath.item])
         case .analitics:
-            //TODO: -
-            ()
+            openAnaliticsDetailVC(with: filteredAnalitics[indexPath.item])
         }
     }
     
