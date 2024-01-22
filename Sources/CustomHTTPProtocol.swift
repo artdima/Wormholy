@@ -91,9 +91,9 @@ public class CustomHTTPProtocol: URLProtocol {
     /// - Parameter request: The request being processed.
     private class func shouldHandleRequest(_ request: URLRequest) -> Bool {
         guard let host = request.url?.host,
-              let path = request.url?.pathExtension else { return false }
+              let path = request.url?.path else { return false }
 
-        return CustomHTTPProtocol.ignoredHosts.filter({ host.hasSuffix($0) }).isEmpty ||
+        return CustomHTTPProtocol.ignoredHosts.filter({ host.hasSuffix($0) }).isEmpty &&
         CustomHTTPProtocol.ignoredPaths.filter({ path.hasSuffix($0) }).isEmpty
     }
     
