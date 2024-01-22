@@ -23,6 +23,11 @@ public class Wormholy: NSObject
         get { return CustomHTTPProtocol.ignoredHosts }
         set { CustomHTTPProtocol.ignoredHosts = newValue }
     }
+    
+    @objc public static var ignoredPaths: [String] {
+        get { return CustomHTTPProtocol.ignoredPaths }
+        set { CustomHTTPProtocol.ignoredPaths = newValue }
+    }
   
     /// Limit the logging count
     ///

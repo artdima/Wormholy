@@ -10,6 +10,7 @@ import Foundation
 
 public class CustomHTTPProtocol: URLProtocol {
     static var ignoredHosts = [String]()
+    static var ignoredPaths = [String]()
     @available(*, deprecated, renamed: "ignoredHosts")
     static var blacklistedHosts: [String] {
         get {
@@ -17,6 +18,15 @@ public class CustomHTTPProtocol: URLProtocol {
         }
         set {
             ignoredHosts = newValue
+        }
+    }
+    
+    static var blacklistedPaths: [String] {
+        get {
+            return ignoredPaths
+        }
+        set {
+            ignoredPaths = newValue
         }
     }
 
@@ -80,9 +90,11 @@ public class CustomHTTPProtocol: URLProtocol {
     /// Inspects the request to see if the host has not been blacklisted and can be handled by this URL protocol.
     /// - Parameter request: The request being processed.
     private class func shouldHandleRequest(_ request: URLRequest) -> Bool {
-        guard let host = request.url?.host else { return false }
+        guard let host = request.url?.host,
+              let path = request.url?.pathExtension else { return false }
 
-        return CustomHTTPProtocol.ignoredHosts.filter({ host.hasSuffix($0) }).isEmpty
+        return CustomHTTPProtocol.ignoredHosts.filter({ host.hasSuffix($0) }).isEmpty ||
+        CustomHTTPProtocol.ignoredPaths.filter({ path.hasSuffix($0) }).isEmpty
     }
     
     deinit {
